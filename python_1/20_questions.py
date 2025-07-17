@@ -1,6 +1,6 @@
 import random
 
-print("\nlets play a version of 20 question\n")
+print("\nlets play a version of 20 question: ask valid questions with keywords [legs,animals,alive,nature,place,food,fly] \n")
 
 #                  MAIN VARIABLES
 
@@ -117,20 +117,48 @@ def answer_question(fact_key):
     global questions_asked
     questions_asked += 1
     print("remaining questions:", max_questions - questions_asked)
+
 #               MAIN GAME LOOP
 
 while questions_asked < max_questions:
-    question = input("\nAsk a yes or no question or type 'guess':\n").lower()
+
+#               Asks the player the question    
+    
+    question = input("\nAsk a yes or no question or type 'guess' when you have an answer(you can also type 'quit' to give up):\n").lower()
+    
     if question == "guess":
         guess = input("\nwhat is your guess\n")
+        
         if guess == secret_answer:
             print("\ncongradulations you have guessed the answer;",secret_answer+",great job\n")
+            print("you only guessed in",questions_asked)
             break
+        
         else:
             print("\nsorry thats not it\n")
             questions_asked += 1
             print("remaining questions:", max_questions - questions_asked)
+            
             continue
+    
+    if question == "quit":
+        quit_assurance = input("are you sure you want to give up('yes'/'no')")
+        if quit_assurance == "yes":
+            print("\n Game over! You quit your challenge :( ")
+            print("The correct answer was:", secret_answer)
+           
+            break
+        
+        elif quit_assurance == "no":
+            print("\nok lets continue the game -> \n")
+            
+            continue
+        else:
+            print("i dont quite understand that. lets continue -> \n")
+           
+            continue
+
+
     
     elif "animal" in question:
         answer_question("is_animal")
