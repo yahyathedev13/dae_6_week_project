@@ -1,10 +1,19 @@
 import random
 
+#           the main game functuion
+
 def guess_the_number():
+
     print("welcome to the number guessing game"/n)
     print("imma guess a number 1-100, and your going to have to guess that number")
+    
+    #main variables
+    
     number = random.randint(1, 100)
     guesses_taken = 0
+    
+    #main game loop
+    
     while True:
         guess = input("Enter your guess (or type 'quit' to give up): ")
         if guess.lower() == 'quit':
@@ -22,6 +31,8 @@ def guess_the_number():
         else:
             print(f"Congratulations! You guessed the number in {guesses_taken} tries.")
             break
+
+#           Lastly we need to call the function
 
 
 
