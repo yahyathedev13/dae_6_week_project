@@ -5,93 +5,116 @@ print("\nlets play a version of 20 question: ask valid questions with keywords [
 #                  MAIN VARIABLES
 
 possible_guesses = [
+   
     "tree","grass","river","mountain","flower",   
     "elephant","tiger","giraffe","monkey","hawk",
     "paris","school","zoo","italy","park",
     "burger","cracker","banana","pizza","carrot"
+   
     ]
 
 facts = {
+
 #                       animals
+   
     "elephant":{"is_animal": True, "is_nature": True, "is_place": False,
                  "is_food":False, "is_alive":True,"can_fly":False,
                  "has_legs": True
                  },
+   
     "tiger":{"is_animal": True, "is_nature": True, "is_place": False,
               "is_food":False, "is_alive":True,"can_fly":False,
               "has_legs": True
               },
+   
     "giraffe":{"is_animal": True, "is_nature": True,"is_place": False,
                 "is_food":False, "is_alive":True,"can_fly":False,
                 "has_legs": True
                 },
+   
     "monkey":{"is_animal": True, "is_nature": True,"is_place": False,
                "is_food":False, "is_alive":True,"can_fly":False,
                "has_legs": True
                },
+   
     "hawk":{"is_animal": True, "is_nature": True, "is_place": False,
              "is_food":False, "is_alive":True,"can_fly":True,
              "has_legs": False
              },
 #                         nature
+   
     "tree": {"is_animal": False, "is_nature": True, "is_place": False,
               "is_food": False, "is_alive": True,"can_fly":False,
               "has_legs": False
               },
+   
     "grass": {"is_animal": False, "is_nature": True, "is_place": False,
                "is_food": False, "is_alive": True,"can_fly":False,
                "has_legs": False
                },
+    
     "river": {"is_animal": False, "is_nature": True, "is_place": False,
                "is_food": False, "is_alive": False,"can_fly":False,
                "has_legs": False
                },
+   
     "mountain": {"is_animal": False, "is_nature": True, "is_place": False,
                   "is_food": False, "is_alive": False,"can_fly":False,
                   "has_legs": False
                   },
+   
     "flower": {"is_animal": False, "is_nature": True, "is_place": False,
                 "is_food": False, "is_alive": True,"can_fly":False,
                 "has_legs": False
                 },
 #                          places
+  
     "paris": {"is_animal": False, "is_nature": False, "is_place": True,
                "is_food": False, "is_alive": False,"can_fly":False,
                "has_legs": False
                },
+    
     "school": {"is_animal": False, "is_nature": False, "is_place": True,
                 "is_food": False, "is_alive": False,"can_fly":False,
                 "has_legs": False
                 },
+   
     "zoo": {"is_animal": False, "is_nature": False, "is_place": True,
              "is_food": False, "is_alive": False,"can_fly":False,
              "has_legs": False
              },
+   
     "italy": {"is_animal": False, "is_nature": False, "is_place": True,
                "is_food": False, "is_alive": False,"can_fly":False,
                "has_legs": False
                },
+   
     "park": {"is_animal": False, "is_nature": True, "is_place": True,
               "is_food": False, "is_alive": False,"can_fly":False,
               "has_legs": False
               },
 #                           food
+   
     "burger": {"is_animal": False, "is_nature": False, "is_place": False,
                 "is_food": True, "is_alive": False,"can_fly":False,
                 "has_legs": False
                 },
+    
     "cracker": {"is_animal": False, "is_nature": False, "is_place": False,
                  "is_food": True, "is_alive": False,"can_fly":False,
                  "has_legs": False
                  },
+    
     "banana": {"is_animal": False, "is_nature": True, "is_place": False,
                 "is_food": True, "is_alive": True,"can_fly":False,
                 "has_legs": False
                 },
+    
     "pizza": {"is_animal": False, "is_nature": False, "is_place": False,
                "is_food": True, "is_alive": False,"can_fly":False,
                "has_legs": False
                },
+   
     "carrot": {"is_animal": False, "is_nature": True, "is_place": False,
                 "is_food": True, "is_alive": True,"can_fly":False,
                 "has_legs": False
