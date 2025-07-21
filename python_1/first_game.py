@@ -4,7 +4,7 @@ import random
 
 def guess_the_number():
 
-    print("welcome to the number guessing game"/n)
+    print("welcome to the number guessing game\n")
     print("imma guess a number 1-100, and your going to have to guess that number")
     
     #main variables
