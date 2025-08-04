@@ -14,6 +14,9 @@ var health : int = max_health
 var is_frozen : bool = false
 var has_key : bool = false
 
+var spark_bar
+var spark_label
+
 var facing_direction := 1
 
 # gravity constant
@@ -63,5 +66,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	
-	
+	spark_bar.value = spark
+	spark_label.text = "Spark: %d / %d" % [spark, max_spark]
+
+
+func _ready() -> void:
+	spark_bar = get_node("/root/test_scene/main_game_UI/spark_bar")
+	spark_label = get_node("/root/test_scene/main_game_UI/spark_label")

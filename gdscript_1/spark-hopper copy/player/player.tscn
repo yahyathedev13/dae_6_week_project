@@ -346,13 +346,8 @@ radius = 4.0
 height = 12.0
 
 [node name="player" type="CharacterBody2D"]
-modulate = Color(0.3154, 0.709927, 0.83, 1)
+modulate = Color(0.420882, 0.827824, 0.90124, 1)
 script = ExtResource("1_rkbax")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-position_smoothing_enabled = true
-editor_draw_drag_margin = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_32hag")
@@ -367,5 +362,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, 5)
 shape = SubResource("CapsuleShape2D_oul6g")
