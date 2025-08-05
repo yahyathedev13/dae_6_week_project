@@ -17,6 +17,9 @@ var has_key : bool = false
 var spark_bar
 var spark_label
 
+var health_bar
+var health_label
+
 var facing_direction := 1
 
 # gravity constant
@@ -60,16 +63,22 @@ func _physics_process(delta: float) -> void:
 	
 	# movement pt2 jumpinng
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor() and max_spark >= 20:
+	if Input.is_action_pressed("jump") and is_on_floor() and max_spark >= 20:
 		velocity.y = jump_force
 		spark -= 20
 	
 	move_and_slide()
 	
 	spark_bar.value = spark
-	spark_label.text = "Spark: %d / %d" % [spark, max_spark]
+	spark_label.text = "SPARK: %d / %d" % [spark, max_spark]
+	
+	health_bar.value = health
+	health_label.text = "HEARTS: %d / %d" % [health, max_health]
 
 
 func _ready() -> void:
 	spark_bar = get_node("/root/test_scene/main_game_UI/spark_bar")
 	spark_label = get_node("/root/test_scene/main_game_UI/spark_label")
+	
+	health_bar = get_node("/root/test_scene/main_game_UI/health_bar")
+	health_label = get_node("/root/test_scene/main_game_UI/health_label")
