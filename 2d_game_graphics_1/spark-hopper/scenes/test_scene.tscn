@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://baotoej6v1wmb"]
+[gd_scene load_steps=50 format=4 uid="uid://baotoej6v1wmb"]
 
 [ext_resource type="PackedScene" uid="uid://jq7cobed68co" path="res://player/player.tscn" id="1_j8ivh"]
 [ext_resource type="LabelSettings" uid="uid://wwewyy4b3b1a" path="res://assets/entergamefont.tres" id="1_s36qc"]
@@ -12,8 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://ciog8b43eiiql" path="res://assets/particles.png" id="7_6qxox"]
 [ext_resource type="Texture2D" uid="uid://8u5i1115tvdy" path="res://assets/new_tileset_2.png" id="7_s36qc"]
 [ext_resource type="Script" uid="uid://ngjt7j215h3t" path="res://scripts/area_enter_checker.gd" id="9_h3xc6"]
+[ext_resource type="Texture2D" uid="uid://b6273ru3lm5xb" path="res://assets/open.png" id="11_ap2hy"]
+[ext_resource type="Texture2D" uid="uid://dc5jibsf2frgd" path="res://assets/spawn.png" id="11_gah1j"]
 [ext_resource type="PackedScene" uid="uid://cwvdv84f0cumu" path="res://scenes/hitbox.tscn" id="12_gthg3"]
 [ext_resource type="PackedScene" uid="uid://c037hwl67gycf" path="res://scenes/key.tscn" id="14_u0xbq"]
+[ext_resource type="FontFile" uid="uid://dbr3h5ktaxmg5" path="res://assets/fonts/PressStart2P.ttf" id="15_pln1h"]
+[ext_resource type="Texture2D" uid="uid://bthg7cqovkjh8" path="res://assets/particle.png" id="16_8gixj"]
+[ext_resource type="Texture2D" uid="uid://o2pgx08b23o6" path="res://assets/closed.png" id="17_qq5q4"]
+[ext_resource type="Script" uid="uid://bfsvobopqp26o" path="res://scripts/portal.gd" id="18_gah1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hf2sn"]
 texture = ExtResource("4_wtsjf")
@@ -443,6 +449,33 @@ sources/0 = SubResource("TileSetAtlasSource_gthg3")
 
 [sub_resource type="Gradient" id="Gradient_s36qc"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gah1j"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gah1j"]
+atlas = ExtResource("17_qq5q4")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afgys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gah1j")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ap2hy")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntc4i"]
 texture = ExtResource("2_j8ivh")
 texture_region_size = Vector2i(8, 8)
@@ -563,6 +596,82 @@ sources/1 = SubResource("TileSetAtlasSource_u0xbq")
 sources/2 = SubResource("TileSetAtlasSource_pln1h")
 sources/0 = SubResource("TileSetAtlasSource_ntc4i")
 sources/3 = SubResource("TileSetAtlasSource_8gixj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8gixj"]
+font = ExtResource("15_pln1h")
+
+[sub_resource type="Animation" id="Animation_8gixj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_name/level_name:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pln1h"]
+resource_name = "on_level_enter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_name/level_name:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.25, 1.6667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0.0588235, 0.0588235, 0.0588235, 1), Color(0.0588235, 0.0588235, 0.0588235, 1), Color(0.0588235, 0.0588235, 0.0588235, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawn:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hf2sn"]
+_data = {
+&"RESET": SubResource("Animation_8gixj"),
+&"on_level_enter": SubResource("Animation_pln1h")
+}
 
 [node name="test_scene" type="Node2D"]
 
@@ -805,6 +914,7 @@ position = Vector2(568, 283)
 [node name="CPUParticles2D" type="CPUParticles2D" parent="spikes/particles"]
 position = Vector2(797, 258)
 scale = Vector2(0.5, 0.5)
+amount = 12
 texture = ExtResource("7_6qxox")
 lifetime = 0.2
 preprocess = 1.54
@@ -827,6 +937,7 @@ hue_variation_max = 0.8
 [node name="CPUParticles2D5" type="CPUParticles2D" parent="spikes/particles"]
 position = Vector2(805, 42)
 scale = Vector2(0.5, 0.5)
+amount = 12
 texture = ExtResource("7_6qxox")
 lifetime = 0.2
 preprocess = 1.54
@@ -848,6 +959,7 @@ hue_variation_max = 0.8
 [node name="CPUParticles2D4" type="CPUParticles2D" parent="spikes/particles"]
 position = Vector2(1163, 246)
 scale = Vector2(0.5, 0.5)
+amount = 12
 texture = ExtResource("7_6qxox")
 lifetime = 0.2
 preprocess = 1.54
@@ -868,7 +980,7 @@ hue_variation_max = 0.8
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="spikes/particles"]
 position = Vector2(1106, 326)
 scale = Vector2(0.5, 0.5)
-amount = 50
+amount = 100
 texture = ExtResource("7_6qxox")
 lifetime = 0.2
 preprocess = 1.54
@@ -892,6 +1004,7 @@ hue_variation_max = 0.8
 position = Vector2(567, 267)
 rotation = -0.516634
 scale = Vector2(0.5, 0.5)
+amount = 12
 texture = ExtResource("7_6qxox")
 lifetime = 0.2
 preprocess = 1.54
@@ -911,8 +1024,30 @@ color = Color(0.262825, 0.299862, 0.681576, 1)
 hue_variation_min = 0.6
 hue_variation_max = 0.8
 
+[node name="portal" type="Area2D" parent="."]
+script = ExtResource("18_gah1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal"]
+position = Vector2(1323, 224)
+shape = SubResource("CapsuleShape2D_gah1j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal"]
+modulate = Color(0.653646, 0.653646, 0.653646, 1)
+position = Vector2(1331, 219.5)
+scale = Vector2(2.125, 1.21875)
+sprite_frames = SubResource("SpriteFrames_afgys")
+animation = &"open"
+autoplay = "closed"
+
+[node name="Spawn" type="Sprite2D" parent="."]
+modulate = Color(0.695313, 0.695313, 0.695313, 1)
+position = Vector2(275, 224)
+texture = ExtResource("11_gah1j")
+vframes = 2
+
 [node name="player" parent="." instance=ExtResource("1_j8ivh")]
-position = Vector2(247, 238)
+position = Vector2(275, 225)
+metadata/_edit_group_ = true
 
 [node name="main_player_camera" parent="player" instance=ExtResource("3_6qxox")]
 limit_left = -16
@@ -1015,10 +1150,42 @@ text = "every   dash    costs    5   sparks."
 label_settings = ExtResource("1_s36qc")
 
 [node name="key" parent="." instance=ExtResource("14_u0xbq")]
-position = Vector2(899, 229)
+position = Vector2(1051, 229)
+
+[node name="level_name" type="CanvasLayer" parent="."]
+
+[node name="level_name" type="Label" parent="level_name"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -287.0
+offset_top = 85.0
+offset_right = -95.0
+offset_bottom = 108.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+text = "1 - TUTORIAL"
+label_settings = SubResource("LabelSettings_8gixj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Particle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(720, 180)
+rotation = 3.14159
+scale = Vector2(863.623, 359.605)
+texture = ExtResource("16_8gixj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hf2sn")
+}
+autoplay = "on_level_enter"
+speed_scale = 0.5
 
 [connection signal="body_exited" from="area_enters/area_enter_checker" to="area_enters/area_enter_checker" method="_on_body_exited"]
 [connection signal="body_entered" from="area_enters/2nd_area_checker" to="area_enters/2nd_area_checker" method="_on_body_entered"]
 [connection signal="body_entered" from="area_enters/3rd_area_checker" to="area_enters/3rd_area_checker" method="_on_body_entered"]
 [connection signal="body_entered" from="area_enters/tutorial" to="area_enters/tutorial" method="_on_body_entered"]
 [connection signal="body_exited" from="area_enters/tutorial" to="area_enters/tutorial" method="_on_body_exited"]
+[connection signal="body_entered" from="portal" to="portal" method="_on_body_entered"]

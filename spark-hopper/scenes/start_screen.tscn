@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0uaeux3viddi"]
+[gd_scene load_steps=10 format=3 uid="uid://c0uaeux3viddi"]
 
 [ext_resource type="Script" uid="uid://cbqr2wijq1eq" path="res://scripts/start_screen.gd" id="1_hm208"]
 [ext_resource type="FontFile" uid="uid://dbr3h5ktaxmg5" path="res://assets/fonts/PressStart2P.ttf" id="1_tx5wa"]
-[ext_resource type="Texture2D" uid="uid://c3wr5yvj85f0o" path="res://player/player_sprites_anims.png" id="2_o7i0r"]
 [ext_resource type="FontFile" uid="uid://b6xi85h0ngdgf" path="res://assets/fonts/main_font_.ttf" id="3_he1sj"]
 [ext_resource type="Texture2D" uid="uid://bthg7cqovkjh8" path="res://assets/particle.png" id="5_5pab1"]
 
@@ -12,119 +11,95 @@ font_color = Color(0.45098, 0.0901961, 0.176471, 1)
 outline_size = 5
 outline_color = Color(0.0235294, 0.0235294, 0.0313726, 1)
 
+[sub_resource type="Animation" id="Animation_he1sj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(280, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(616, 68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particle:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_o7i0r"]
 resource_name = "jump"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Label2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(405, 249), Vector2(565, 89)]
+"values": [Vector2(37, 68), Vector2(325, 68)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label2:position")
+tracks/1/path = NodePath("Label:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(37, 68), Vector2(280, 68)]
+"values": [Vector2(909, 68), Vector2(584, 68)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Label:position")
+tracks/2/path = NodePath("Button:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(909, 68), Vector2(616, 68)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Button:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.75),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_he1sj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(565, 89)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(280, 68)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Label:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(616, 68)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Button:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Particle:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_o30b1"]
@@ -162,9 +137,9 @@ scale = Vector2(30.931, 18.3772)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 333.0
+offset_left = 8.00006
 offset_top = 68.0
-offset_right = 429.0
+offset_right = 104.0
 offset_bottom = 84.0
 grow_horizontal = 2
 scale = Vector2(3.03154, 3.03154)
@@ -176,23 +151,15 @@ horizontal_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -539.0
+offset_left = -251.0
 offset_top = 68.0
-offset_right = -459.0
+offset_right = -171.0
 offset_bottom = 84.0
 grow_horizontal = 2
 scale = Vector2(3.03154, 3.03154)
 text = "SPARK"
 label_settings = SubResource("LabelSettings_o7i0r")
 horizontal_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(565, 89)
-scale = Vector2(5, 5)
-texture = ExtResource("2_o7i0r")
-hframes = 10
-vframes = 8
-frame = 30
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

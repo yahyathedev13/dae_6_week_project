@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var movement_speed : float = 200.0
 @export var jump_force : float = -375.0
 @export var max_spark : int = 20
-@export var max_health : int = 3
+@export var max_health : int = 5
 
 # onready variables
 
@@ -26,7 +26,9 @@ var UI_anim
 
 # variables that show only on the scripting thing
 
-var dash_speed : float = 4000.0
+var dash_speed : float = 1000.0
+var dash_decay : float = 0.85
+var dash_velocity :float = 0.0
 var facing_direction := 1
 var spark : int = max_spark
 var health : int = max_health
@@ -39,6 +41,7 @@ var regen : bool = false
 var can_jump : bool = true
 var can_dash : bool = true
 var is_dashing : bool = false
+var has_left_floor : bool = false
 
 # gravity constant
 
@@ -101,12 +104,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		if is_on_floor() :
 			$AnimatedSprite2D.play("idle")
-	
+			has_left_floor = false
+	if not is_on_floor() and not has_left_floor:
+		has_left_floor = true
+		$jump.start()
 	# movement pt2 jumpinng
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor() and spark >= 3 and can_jump:
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or not $jump.is_stopped()) and spark >= 3 and can_jump:
 		velocity.y = jump_force
 		spark -= 3
+		$jump.stop()
 	 
 	if (jumps_remaining == 0 and can_jump == false and Input.is_action_just_pressed("jump")) or (dash_remaining == 0  and can_dash == false and Input.is_action_just_pressed("dash") ):
 		UI_anim.play("spark_too_low")
@@ -116,9 +123,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and not is_dashing and spark >= 5 and can_dash:
 		dashing()
 		camera_anim.play("rattle")
-		$AnimatedSprite2D.play("dash")
+		
 	if is_dashing == true:
 		velocity.y = 0
+		velocity.x = dash_velocity
+		dash_velocity *= dash_decay
+		$player_anim.play("dashing")
+		move_and_slide()
+		return
 	
 	
 	
@@ -191,17 +203,19 @@ func dashing():
 	
 	$dash_particles.emitting = true
 	
+	
 	if facing_direction == 1:
-		velocity.x = dash_speed
+		dash_velocity = dash_speed
 		$dash_particles.direction = Vector2(-1,0)
+		
 	else:
-		velocity.x = -dash_speed
+		dash_velocity = -dash_speed
 		$dash_particles.direction = Vector2(1,0)
 		
 	$dash_particles.emitting = true
 	
 	$dash_timer.start()
-	
+
 
 # timers
 
@@ -210,7 +224,8 @@ func _on_timer_timeout() -> void:
 	$player_anim.play("RESET")
 
 func _on_death_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func _on_spark_timer_timeout() -> void:
 	if spark < 20:
@@ -219,3 +234,7 @@ func _on_spark_timer_timeout() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false 
+	$player_anim.play("RESET")
+
+func _on_jump_timeout() -> void:
+	can_jump == false

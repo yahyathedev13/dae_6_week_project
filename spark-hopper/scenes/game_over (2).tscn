@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://gylaqtjxxnbm"]
+
+[ext_resource type="FontFile" uid="uid://dbr3h5ktaxmg5" path="res://assets/fonts/PressStart2P.ttf" id="1_ccer4"]
+[ext_resource type="FontFile" uid="uid://b6xi85h0ngdgf" path="res://assets/fonts/main_font_.ttf" id="2_8u835"]
+[ext_resource type="Texture2D" uid="uid://5enj0qg4rw2g" path="res://icon.svg" id="3_ftari"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_28vn7"]
+font = ExtResource("1_ccer4")
+font_color = Color(0.757813, 0.000371336, 0, 1)
+
+[sub_resource type="Animation" id="Animation_0nqlu"]
+resource_name = "game_over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "G", "GA", "GAM", "GAMe", "GAMe o", "GAMe ov", "GAMe ove", "GAMe over"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("quit_button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.55, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xeevv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["G"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("quit_button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqhvx"]
+_data = {
+&"RESET": SubResource("Animation_xeevv"),
+&"game_over": SubResource("Animation_0nqlu")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(29.7518, 17.6835)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 254.0
+offset_top = 78.0
+offset_right = 398.0
+offset_bottom = 94.0
+grow_horizontal = 2
+scale = Vector2(4.52589, 4.52589)
+text = "G"
+label_settings = SubResource("LabelSettings_28vn7")
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wqhvx")
+}
+autoplay = "game_over"
+speed_scale = 0.5
+
+[node name="quit_button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 511.0
+offset_top = 368.0
+offset_right = 566.0
+offset_bottom = 392.0
+scale = Vector2(1.69198, 1.69198)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.544271, 0, 0.0854757, 1)
+theme_override_fonts/font = ExtResource("2_8u835")
+text = "Q U I T"
+flat = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(98, 250)
+texture = ExtResource("3_ftari")
