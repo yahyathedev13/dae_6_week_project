@@ -9,7 +9,7 @@ class Question:
     weight: int = 1
 
 
-QUESTIONS = (
+QUESTIONS = [
     Question(
         "Which best describes your day-to-day life?",
         (
@@ -55,7 +55,7 @@ QUESTIONS = (
         ),
         (24, 28, 33, 40, 35),
     ),
-)
+]
 
 LIFE_STAGE_AGE_RANGES = (
     (8, 14),
